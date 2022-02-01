@@ -31,6 +31,11 @@ const webChat = (io) => {
             saveMessage(message, nickname, time)
             io.emit('message', { message, nickname, time, id: socket.id })
         })
+
+        socket.on('typing', ({id}) => {
+            const typinfUser = onlineUsers.find((user) => user.id === id)
+            io.emit('typing', {user: typinfUser.name})
+        })
     })
 }
 
