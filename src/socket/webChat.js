@@ -34,7 +34,11 @@ const webChat = (io) => {
 
         socket.on('typing', ({id}) => {
             const typinfUser = onlineUsers.find((user) => user.id === id)
-            io.emit('typing', {user: typinfUser.name})
+            io.emit('typing', {user: typinfUser})
+        })
+
+        socket.on('stopTyping', () => {
+            io.emit('stopTyping')
         })
     })
 }
